@@ -1,0 +1,24 @@
+// 3 FDC + controleur
+<html>
+<head>
+<title>A Leaflet map!</title> <meta charset="UTF-8">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<style>
+#map {width: 90%; height:600px; margin: auto; } </style>
+</head> <body>
+<div id="map"></div> <script>
+// Initialiser la carte
+var map = L.map('map', { center: [50.631696, 3.075220],
+zoom: 16});
+
+  // Ajouter des fonds de carte
+var baselayers = {
+OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png'),
+EsriSat: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+CartoDB: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png')};
+baselayers.OSM.addTo(map);
+  
+  // Ajouter le controleur de couches
+L.control.layers(baselayers).addTo(map);
+</script>
+</body> </html>
