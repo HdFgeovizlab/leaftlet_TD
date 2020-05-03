@@ -1,0 +1,39 @@
+// ajout marqueur + icone personnalisee + pop up
+<html>
+<head>
+<title>A Leaflet map!</title> <meta charset="UTF-8">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<style>
+#map {width: 90%; height:600px; margin: auto; } </style>
+</head> <body>
+<div id="map"></div> <script>
+// Initialiser la carte
+var map = L.map('map', { center: [50.631696, 3.075220],
+zoom: 16});
+
+  // Ajouter des fonds de carte
+var baselayers = {
+OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png'),
+EsriSat: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+CartoDB: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png')};
+baselayers.OSM.addTo(map);
+  
+  // Ajouter le controleur de couches
+L.control.layers(baselayers).addTo(map);
+  
+  // choix icone
+  var univicone = L.icon({iconUrl: 'https://github.com/mapbox/maki/blob/master/icons/star-15.svg', iconSize: [30, 30] });
+  
+  
+  // Ajouter des marqueurs manuels
+var Univ = L.marker([50.631779, 3.075204],{icon: univicone}).addTo(map);
+var Gare = L.marker([50.636583, 3.069936]).bindPopup('<b>Gare Lille Flandre</b>').addTo(map);
+  
+  // ajout couche de marqueurs
+  var Lille = new L.LayerGroup(); 
+  L.marker([50.633720, 3.075693]).addTo(map), 
+  L.marker([50.632768, 3.077938]).addTo(map);
+  
+  
+</script>
+</body> </html>
